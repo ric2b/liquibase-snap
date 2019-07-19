@@ -1,0 +1,33 @@
+name: liquibase
+version: 3.7.0
+summary: Source control for your database
+description: |
+    Liquibase is an open-source database-independent library for tracking, 
+    managing and applying database schema changes. 
+    It was started in 2006 to allow easier tracking of database changes, 
+    especially in an agile software development environment. 
+license: Apache-2.0
+
+base: core18
+confinement: strict
+grade: devel
+
+parts:
+  liquibase:
+    plugin: dump
+    source: https://github.com/liquibase/liquibase/releases/download/liquibase-parent-$SNAPCRAFT_PROJECT_VERSION/liquibase-$SNAPCRAFT_PROJECT_VERSION-bin.tar.gz
+    build-packages: [ca-certificates, ca-certificates-java, openjdk-8-jre-headless]
+    stage-packages: [openjdk-8-jre-headless]
+
+plugs:
+    maven-repos:
+        interface: personal-files
+        read: [$HOME/.m2/repository]
+
+apps:
+  liquibase:
+    command: liquibase
+    environment:
+        JAVA_HOME: $SNAP/usr/lib/jvm/java-8-openjdk-amd64
+        PATH: $PATH:/$JAVA_HOME/jre/bin
+    plugs: [network, home, removable-media, maven-repos]
