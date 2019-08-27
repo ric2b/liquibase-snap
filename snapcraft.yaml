@@ -20,7 +20,7 @@ parts:
     stage-packages: [openjdk-8-jre-headless]
 
 plugs:
-    maven-repos:
+    dot-m2-repository:
         interface: personal-files
         read: [$HOME/.m2/repository]
 
@@ -30,4 +30,4 @@ apps:
     environment:
         JAVA_HOME: $SNAP/usr/lib/jvm/java-8-openjdk-amd64
         PATH: $PATH:/$JAVA_HOME/jre/bin
-    plugs: [network, home, removable-media, maven-repos]
+    plugs: [network, home, removable-media, dot-m2-repository]
