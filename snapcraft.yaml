@@ -1,5 +1,5 @@
 name: liquibase
-version: 3.10.2
+version: 4.0.0
 summary: Source control for your database
 description: |
     Liquibase is an open-source database-independent library for tracking, 
